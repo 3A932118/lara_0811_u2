@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,18 +14,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
 //設定Route反應，回傳view
 Route::get('/', function () {
     return view('welcome');
 });
 
 //設定Route回傳字串
-/*
 Route::get('/', function () {
     return 'welcome';
 });
-*/
 
 //設定Route跳轉路由
 Route::get('r1', function () {
@@ -53,7 +51,7 @@ Route::get('hello/{name?}', function($name='Everybody') {
 Route::get('dashboard', function() {
     return 'dashboard';
 });
-    
+
 //設定另一個Route，以群組包起來設定prefix
 Route::group(['prefix' => 'admin'], function() {
     Route::get('dashboard', function() {
@@ -61,4 +59,4 @@ Route::group(['prefix' => 'admin'], function() {
     });
 });
 
-    
+Route::get('home',[HomeController::class, 'index'])->name('home.index');
